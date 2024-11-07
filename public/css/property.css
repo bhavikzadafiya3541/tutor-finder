@@ -1,0 +1,14 @@
+.new-property{
+    background-color: cornflowerblue;
+}
+.view-chart{
+    padding: 10px;
+    background-color: black;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+
+}
+.relative.z-0.inline-flex.shadow-sm.rounded-md{
+    display: none !important;
+}
