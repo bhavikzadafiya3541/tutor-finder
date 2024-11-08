@@ -11,18 +11,18 @@
 @endsection
 
 @push('custom-styles')
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link href="{{ asset('css/select2.min.css') }}" rel="stylesheet" />
 @endpush
 
 @section('content')
-    <div class="site-section bg-light" id="profile-section">
+    <div class="site-section" id="profile-section">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
                     <form action="{{ route('frontend.profile.update', $tutor) }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group row">
-                            <div class="col-md-12">
+                            <div class="col-md-6">
                                 <label for="first_name">First Name</label>
                                 <input type="text" id="first_name" name="first_name"
                                     class="form-control @error('first_name') is-invalid @enderror"
@@ -32,10 +32,7 @@
                                     <span class="invalid-feedback">{{ $message }}</span>
                                 @enderror
                             </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <div class="col-md-12">
+                            <div class="col-md-6">
                                 <label for="last_name">Last Name</label>
                                 <input type="text" id="last_name" name="last_name"
                                     class="form-control @error('last_name') is-invalid @enderror"
@@ -48,16 +45,13 @@
                         </div>
 
                         <div class="form-group row">
-                            <div class="col-md-12">
+                            <div class="col-md-6">
                                 <label for="email">Email Address</label>
                                 <input type="email" id="email" name="email" class="form-control"
                                     value="{{ isset($tutor->email) ? $tutor->email : old('email') }}"
                                     placeholder="Enter Email Address" readonly>
                             </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <div class="col-md-12">
+                            <div class="col-md-6">
                                 <label for="phone">Phone</label>
                                 <input type="text" id="phone" name="phone"
                                     class="form-control @error('phone') is-invalid @enderror"
@@ -69,7 +63,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
+                        <div class="form-group row mb-2">
                             <div class="col-md-12">
                                 <label for="intro">Intro</label>
                                 <textarea name="intro" class="form-control @error('intro') is-invalid @enderror" placeholder="Enter Intro"
@@ -81,7 +75,7 @@
                         </div>
 
                         @if (isset($tutor->profile_picture) && !empty($tutor->profile_picture))
-                            <div class="mt-2">
+                            <div>
                                 <img src="{{ url(Storage::url($tutor->profile_picture)) }}" width="100" height="100"
                                     class="w-full" />
                             </div>
@@ -103,7 +97,9 @@
                                 <label for="cities">Cities</label>
                                 <select class="form-control" id="cities" name="cities[]" multiple="multiple">
                                     @foreach ($cities as $city)
-                                        <option value="{{ $city->id }}" {{ isset($selectedCities) && in_array($city->id, $selectedCities) ? 'selected' : '' }}>{{ $city->name }}</option>
+                                        <option value="{{ $city->id }}"
+                                            {{ isset($selectedCities) && in_array($city->id, $selectedCities) ? 'selected' : '' }}>
+                                            {{ $city->name }}</option>
                                     @endforeach
                                 </select>
                                 @error('cities')
@@ -112,22 +108,68 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
+                        <div class="form-group row select-subject">
                             <div class="col-md-12">
                                 <label for="subjects">Subjects</label>
-                                <select class="form-control" id="subjects" name="subjects[]" multiple="multiple">
-                                    @foreach ($subjects as $subject)
-                                        <option value="{{ $subject->id }}" {{ isset($selectedSubjects) && in_array($subject->id, $selectedSubjects) ? 'selected' : '' }}>{{ $subject->name }}</option>
-                                    @endforeach
-                                </select>
-                                @error('subjects')
-                                    <small class="text-danger">{{ $message }}</small>
-                                @enderror
+                                <div>
+                                    <div class="row align-items-baseline mb-2">
+                                        <div class="col-lg-6">
+                                            <select class="form-control" id="subjectone" name="subjects[]">
+                                                @foreach ($subjects as $subject)
+                                                    <option value="{{ $subject->id }}"
+                                                        {{ isset($selectedSubjects) && in_array($subject->id, $selectedSubjects) ? 'selected' : '' }}>
+                                                        {{ $subject->name }}</option>
+                                                @endforeach
+                                            </select>
+                                            <small class="text-danger">This field is reuired</small>
+                                        </div>
+                                        <div class="col-lg-5 px-0">
+                                            <div>
+                                                <input type="text" class="form-control is-invalid" placeholder="Description" />
+                                            </div>
+                                            <small class="text-danger">This field is reuired</small>
+                                        </div>
+                                        <div class="col-lg-1 px-0">
+                                            <div class="add-more d-flex justify-content-center">
+                                                <button
+                                                    class="bg-primary border-0 d-flex align-items-center justify-content-center">
+                                                    <i class="icon-plus text-white"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row align-items-baseline mb-2">
+                                        <div class="col-lg-6">
+                                            <select class="form-control" id="subjecttwo" name="subjects[]">
+                                                @foreach ($subjects as $subject)
+                                                    <option value="{{ $subject->id }}"
+                                                        {{ isset($selectedSubjects) && in_array($subject->id, $selectedSubjects) ? 'selected' : '' }}>
+                                                        {{ $subject->name }}</option>
+                                                @endforeach
+                                            </select>
+                                            <small class="text-danger">This field is reuired</small>
+                                        </div>
+                                        <div class="col-lg-5 px-0">
+                                            <div>
+                                                <input type="text" class="form-control is-invalid" placeholder="Description" />
+                                            </div>
+                                            <small class="text-danger">This field is reuired</small>
+                                        </div>
+                                        <div class="col-lg-1 px-0">
+                                            <div class="add-more d-flex justify-content-center">
+                                                <button
+                                                    class="bg-primary border-0 d-flex align-items-center justify-content-center">
+                                                    <i class="icon-minus text-white"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <div class="col-md-2 mt-2 m-auto">
+                            <div class="col-md-2 mt-2 mx-auto">
                                 <button type="submit" class="btn btn-block btn-primary text-white">Update</button>
                             </div>
                         </div>
@@ -136,9 +178,9 @@
             </div>
         </div>
 
-        @if(isset($tutor->user) && is_null($tutor->user->password))
-            <div class="modal fade" id="updatePasswordModal" tabindex="-1" role="dialog" aria-labelledby="updatePasswordModalLabel"
-                aria-hidden="true">
+        @if (isset($tutor->user) && is_null($tutor->user->password))
+            <div class="modal fade" id="updatePasswordModal" tabindex="-1" role="dialog"
+                aria-labelledby="updatePasswordModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -154,13 +196,15 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="password">Password</label>
-                                            <input type="password" name="password" class="form-control" id="password" placeholder="Enter Password" required>
+                                            <input type="password" name="password" class="form-control" id="password"
+                                                placeholder="Enter Password" required>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="password_confirmation">Confirm Password</label>
-                                            <input type="password" name="password_confirmation" class="form-control" id="password_confirmation" placeholder="Enter Confirm Password" required>
+                                            <input type="password" name="password_confirmation" class="form-control"
+                                                id="password_confirmation" placeholder="Enter Confirm Password" required>
                                         </div>
                                     </div>
                                 </div>
@@ -178,11 +222,11 @@
 @endsection
 
 @push('custom-scripts')
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="{{ asset('js/select2.min.js') }}"></script>
     <script>
-        const isPasswordSet = '<?php echo isset($tutor->user) && is_null($tutor->user->password) ? true : false ?>';
+        const isPasswordSet = '<?php echo isset($tutor->user) && is_null($tutor->user->password) ? true : false; ?>';
 
-        if(isPasswordSet) {
+        if (isPasswordSet) {
             $("#updatePasswordModal").modal({
                 backdrop: "static",
                 keyboard: false,
@@ -194,7 +238,10 @@
             $('#cities').select2({
                 placeholder: "Select a City"
             });
-            $('#subjects').select2({
+            $('#subjectone').select2({
+                placeholder: "Select a Subject"
+            });
+            $('#subjecttwo').select2({
                 placeholder: "Select a Subject"
             });
         });

@@ -21,24 +21,26 @@
                     </button>
                 </div>
             @endif
-            <div class="row">
-                <div class="col-lg-12">
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
                     <form action="{{ route('register') }}" method="post">
                         @csrf
-                        <div class="form-group row">
+                        <div class="row align-items-center justify-content-center">
                             <div class="col-md-12">
-                                <label for="email">Email Address</label>
-                                <input type="email" id="email" name="email"
-                                    class="form-control @error('email') is-invalid @enderror"
-                                    placeholder="Enter Email Address">
-                                @error('email')
-                                    <span class="invalid-feedback">{{ $message }}</span>
-                                @enderror
+                                <div class="form-group">
+                                    <label for="email">Email Address</label>
+                                    <input type="email" id="email" name="email"
+                                        class="form-control @error('email') is-invalid @enderror"
+                                        placeholder="Enter Email Address">
+                                    @error('email')
+                                        <span class="invalid-feedback">{{ $message }}</span>
+                                    @enderror
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group row">
-                            <div class="col-md-2 mt-2 m-auto">
-                                <button type="submit" class="btn btn-block btn-primary text-white">Register</button>
+                            <div class="col-md-3">
+                                <div class="form-group mt-2 m-auto">
+                                    <button type="submit" class="btn btn-block btn-primary text-white">Register</button>
+                                </div>
                             </div>
                         </div>
                     </form>

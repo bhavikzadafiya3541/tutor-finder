@@ -3,7 +3,7 @@
         <div class="row text-center">
             <div class="col-md-12">
                 <div class="border-top">
-                    <p>
+                    <p class="mb-0">
                         Copyright &copy;
                         {{ date('Y') }} All rights reserved <i class="icon-heart text-danger" aria-hidden="true"></i>
                         by <a href="{{ url('/') }}" target="_blank">{{ env('APP_NAME') }}</a>
