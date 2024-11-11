@@ -111,59 +111,70 @@
                         <div class="form-group row select-subject">
                             <div class="col-md-12">
                                 <label for="subjects">Subjects</label>
-                                <div>
-                                    <div class="row align-items-baseline mb-2">
-                                        <div class="col-lg-6">
-                                            <select class="form-control" id="subjectone" name="subjects[]">
-                                                @foreach ($subjects as $subject)
-                                                    <option value="{{ $subject->id }}"
-                                                        {{ isset($selectedSubjects) && in_array($subject->id, $selectedSubjects) ? 'selected' : '' }}>
-                                                        {{ $subject->name }}</option>
-                                                @endforeach
-                                            </select>
-                                            <small class="text-danger">This field is reuired</small>
-                                        </div>
-                                        <div class="col-lg-5 px-0">
-                                            <div>
-                                                <input type="text" class="form-control is-invalid" placeholder="Description" />
+                                <div class="append_subjects">
+                                    @if(isset($selectedSubjects) && !empty($selectedSubjects))
+                                        @foreach ($selectedSubjects as $key => $selectedSubject)
+                                            <div class="row align-items-baseline {{ $loop->first ? '' : 'remove-subjects mt-2' }}">
+                                                <div class="col-lg-6">
+                                                    <select class="form-control" id="subject_{{ $key }}" name="subjects[{{ $key }}][id]">
+                                                        <option value="">Select a Subject</option>
+                                                        @foreach ($subjects as $subject)
+                                                            <option value="{{ $subject->id }}"
+                                                                {{ $selectedSubject->id === $subject->id ? 'selected' : '' }}>
+                                                                {{ $subject->name }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                    <small class="text-danger subject_{{ $key }}_error"></small>
+                                                </div>
+                                                <div class="col-lg-5 px-0">
+                                                    <div>
+                                                        <input type="text" name="subjects[{{ $key }}][description]" id="description_{{ $key }}" class="form-control" placeholder="Enter Description" value="{{ $selectedSubject->pivot->description }}" />
+                                                    </div>
+                                                    <small class="text-danger description_{{ $key }}_error"></small>
+                                                </div>
+                                                <div class="col-lg-1 px-0">
+                                                    <div class="add-more d-flex justify-content-center">
+                                                        @if($loop->first)
+                                                            <button type="button" onclick="addMoreSubjects(this);" data-count="{{ count($selectedSubjects) - 1 }}"
+                                                                class="bg-primary border-0 d-flex align-items-center add-more-subject justify-content-center">
+                                                                <i class="icon-plus text-white"></i>
+                                                            </button>
+                                                        @else
+                                                            <button type="button" class="bg-primary border-0 d-flex align-items-center justify-content-center" data-count="{{ count($selectedSubjects) - 1 }}" onclick="removeSubject(this);">
+                                                                <i class="icon-minus text-white"></i>
+                                                            </button>
+                                                        @endif
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <small class="text-danger">This field is reuired</small>
-                                        </div>
-                                        <div class="col-lg-1 px-0">
-                                            <div class="add-more d-flex justify-content-center">
-                                                <button
-                                                    class="bg-primary border-0 d-flex align-items-center justify-content-center">
-                                                    <i class="icon-plus text-white"></i>
-                                                </button>
+                                        @endforeach
+                                    @else
+                                        <div class="row align-items-baseline">
+                                            <div class="col-lg-6">
+                                                <select class="form-control" id="subject_0" name="subjects[0][id]">
+                                                    <option value="">Select a Subject</option>
+                                                    @foreach ($subjects as $subject)
+                                                        <option value="{{ $subject->id }}">{{ $subject->name }}</option>
+                                                    @endforeach
+                                                </select>
+                                                <small class="text-danger subject_0_error"></small>
+                                            </div>
+                                            <div class="col-lg-5 px-0">
+                                                <div>
+                                                    <input type="text" name="subjects[0][description]" id="description_0" class="form-control" placeholder="Enter Description" />
+                                                </div>
+                                                <small class="text-danger description_0_error"></small>
+                                            </div>
+                                            <div class="col-lg-1 px-0">
+                                                <div class="add-more d-flex justify-content-center">
+                                                    <button type="button" onclick="addMoreSubjects(this);" data-count="0"
+                                                        class="bg-primary border-0 d-flex align-items-center add-more-subject justify-content-center">
+                                                        <i class="icon-plus text-white"></i>
+                                                    </button>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="row align-items-baseline mb-2">
-                                        <div class="col-lg-6">
-                                            <select class="form-control" id="subjecttwo" name="subjects[]">
-                                                @foreach ($subjects as $subject)
-                                                    <option value="{{ $subject->id }}"
-                                                        {{ isset($selectedSubjects) && in_array($subject->id, $selectedSubjects) ? 'selected' : '' }}>
-                                                        {{ $subject->name }}</option>
-                                                @endforeach
-                                            </select>
-                                            <small class="text-danger">This field is reuired</small>
-                                        </div>
-                                        <div class="col-lg-5 px-0">
-                                            <div>
-                                                <input type="text" class="form-control is-invalid" placeholder="Description" />
-                                            </div>
-                                            <small class="text-danger">This field is reuired</small>
-                                        </div>
-                                        <div class="col-lg-1 px-0">
-                                            <div class="add-more d-flex justify-content-center">
-                                                <button
-                                                    class="bg-primary border-0 d-flex align-items-center justify-content-center">
-                                                    <i class="icon-minus text-white"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -226,6 +237,8 @@
     <script>
         const isPasswordSet = '<?php echo isset($tutor->user) && is_null($tutor->user->password) ? true : false; ?>';
 
+        const subjects = @json($subjects);
+
         if (isPasswordSet) {
             $("#updatePasswordModal").modal({
                 backdrop: "static",
@@ -238,12 +251,82 @@
             $('#cities').select2({
                 placeholder: "Select a City"
             });
-            $('#subjectone').select2({
-                placeholder: "Select a Subject"
-            });
-            $('#subjecttwo').select2({
-                placeholder: "Select a Subject"
-            });
+
+            if(subjects && subjects.length) {
+                subjects.forEach((subject, index) => {
+                    $(`#subject_${index}`).select2({
+                        placeholder: "Select a Subject"
+                    });
+                });
+            } else {
+                $('#subject_0').select2({
+                    placeholder: "Select a Subject"
+                });
+            }
         });
+
+        const addMoreSubjects = (data) => {
+            let count = $(data).attr('data-count');
+                count = parseInt(count);
+
+            $(`.subject_${count}_error`).html('');
+            $(`.description_${count}_error`).html('');
+
+            if($(`#subject_${count}`).val() == "" || $(`#subject_${count}`).val() == null) {
+                $(`.subject_${count}_error`).html('This Subject field is required!');
+                return false;
+            }
+
+            if($(`#description_${count}`).val() == "" || $(`#description_${count}`).val() == null) {
+                $(`.description_${count}_error`).html('This Description field is required!');
+                return false;
+            }
+
+            let increment = ++count;
+
+            let html = ``;
+                html += `<div class="row align-items-baseline remove-subjects mt-2">`;
+                html += `<div class="col-lg-6">`;
+                html += `<select class="form-control" id="subject_${increment}" name="subjects[${increment}][id]">`;
+                html += `<option value="">Select a Subject</option>`;
+                subjects.forEach((subject, index) => {
+                    html += `<option value="${subject.id}">${subject.name}</option>`;
+                });
+                html += `</select>`;
+                html += `<small class="text-danger subject_${increment}_error"></small>`;
+                html += `</div>`;
+                html += `<div class="col-lg-5 px-0">`;
+                html += `<div>`;
+                html += `<input type="text" id="description_${increment}" name="subjects[${increment}][description]" class="form-control" placeholder="Enter Description" />`;
+                html += `</div>`;
+                html += `<small class="text-danger description_${increment}_error"></small>`;
+                html += `</div>`;
+                html += `<div class="col-lg-1 px-0">`;
+                html += `<div class="add-more d-flex justify-content-center">`;
+                html += `<button type="button" class="bg-primary border-0 d-flex align-items-center justify-content-center" data-count="${increment}" onclick="removeSubject(this);">`;
+                html += `<i class="icon-minus text-white"></i>`;
+                html += `</button>`;
+                html += `</div>`;
+                html += `</div>`;
+                html += `</div>`;
+
+            $('.add-more-subject').attr('data-count', increment);
+
+            $('.append_subjects').append(html);
+
+            $(`#subject_${increment}`).select2({
+                placeholder: "Select a Subject"
+            });
+        };
+
+        const removeSubject = (data) => {
+            let count = $(data).attr('data-count');
+                count = parseInt(count);
+                count = Math.max(0, count - 1);
+
+            $('.add-more-subject').attr('data-count', count);
+
+            $(data).parents('.remove-subjects').remove();
+        };
     </script>
 @endpush

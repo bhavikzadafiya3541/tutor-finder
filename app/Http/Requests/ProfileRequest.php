@@ -33,7 +33,7 @@ class ProfileRequest extends FormRequest
                 })
             ],
             'cities' => 'required|array',
-            'subjects' => 'required|array'
+            'subjects' => ''
         ];
     }
 }

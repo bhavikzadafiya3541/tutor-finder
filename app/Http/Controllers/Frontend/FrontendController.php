@@ -29,7 +29,7 @@ class FrontendController extends Controller
         $tutor = $user->tutor;
 
         $selectedCities = $tutor->cities()->pluck('id')->toArray() ?? [];
-        $selectedSubjects = $tutor->subjects()->pluck('id')->toArray() ?? [];
+        $selectedSubjects = $tutor->subjects;
 
         $cities = City::all();
 
@@ -52,12 +52,20 @@ class FrontendController extends Controller
 
         $tutor = $user->tutor;
 
+        $tutor->cities()->detach();
+        $tutor->subjects()->detach();
+
         $tutor->cities()->sync($data['cities']);
 
-        $tutor->subjects()->sync($data['subjects']);
+        $subjectsData = collect($data['subjects'])->mapWithKeys(function ($subject) {
+            return [
+                $subject['id'] => ['description' => $subject['description']]
+            ];
+        })->toArray();
 
-        unset($data['cities']);
-        unset($data['subjects']);
+        $tutor->subjects()->sync($subjectsData);
+
+        unset($data['cities'], $data['subjects']);
 
         $tutor->update($data);
 
