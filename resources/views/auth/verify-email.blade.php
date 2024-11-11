@@ -19,7 +19,7 @@
                     <form action="{{ route('verification.send') }}" method="post">
                         @csrf
                         <div class="form-group row">
-                            <div class="col-md-2 mt-2 m-auto">
+                            <div class="col-md-4 mt-2 m-auto">
                                 <button type="button" class="btn btn-block btn-primary text-white">Resend Verification Email</button>
                             </div>
                         </div>

@@ -112,7 +112,7 @@
                             <div class="col-md-12">
                                 <label for="subjects">Subjects</label>
                                 <div class="append_subjects">
-                                    @if(isset($selectedSubjects) && !empty($selectedSubjects))
+                                    @if(isset($selectedSubjects) && $selectedSubjects->isNotEmpty())
                                         @foreach ($selectedSubjects as $key => $selectedSubject)
                                             <div class="row align-items-baseline {{ $loop->first ? '' : 'remove-subjects mt-2' }}">
                                                 <div class="col-lg-6">

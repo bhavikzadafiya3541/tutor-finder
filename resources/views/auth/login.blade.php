@@ -29,7 +29,10 @@
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="password">Password</label>
+                                    <div class="d-flex justify-content-between">
+                                        <label for="password">Password</label>
+                                        <a href="{{ route('password.request') }}">Forgot Password?</a>
+                                    </div>
                                     <input type="password" id="password" name="password" class="form-control @error('password') is-invalid @enderror" placeholder="Enter Password">
                                     @error('password')
                                         <span class="invalid-feedback">{{ $message }}</span>

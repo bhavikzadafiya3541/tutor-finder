@@ -1,51 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.frontend.main')
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ env('APP_NAME') }} | Forgot Password</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-    <link rel="stylesheet" href="{{ asset('frontend/plugins/fontawesome-free/css/all.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('frontend/plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('frontend/dist/css/adminlte.min.css') }}">
-</head>
+@section('page_title')
+    {{ env('APP_NAME') }} | Forgot Password
+@endsection
 
-<body class="hold-transition login-page">
-    <div class="login-box">
-        <div class="card card-outline card-primary">
-            <div class="card-header text-center">
-                <a href="Javascript:void(0)" class="h1"><b class="d-block">{{ env('APP_NAME') }}</b>
-                    Forgot Password
-                </a>
-            </div>
-            <div class="card-body">
-                <p class="login-box-msg">Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.</p>
-                <form action="{{ route('password.email') }}" method="post">
-                    @csrf
-                    <div class="input-group">
-                        <input type="email" name="email" value="{{  old('email')  }}" class="form-control" placeholder="Email">
-                        <div class="input-group-append">
-                            <div class="input-group-text">
-                                <span class="fas fa-envelope"></span>
+@section('main-title')
+    <h1>
+        <strong>Forgot Password</strong>
+    </h1>
+@endsection
+
+@section('content')
+    <div class="site-section" id="forgot-password-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <p><span class="font-weight-bold">Forgot your password? </span> No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.</p>
+                    <form action="{{ route('password.email') }}" method="post">
+                        @csrf
+                        <div class="row align-items-center justify-content-center">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="email">Email Address</label>
+                                    <input type="email" id="email" name="email" class="form-control @error('email') is-invalid @enderror" placeholder="Enter Email Address">
+                                    @error('email')
+                                        <span class="invalid-feedback">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group mt-2 m-auto">
+                                    <button type="submit" class="btn btn-block btn-primary text-white">Forgot Password</button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    @error('email')
-                        <div>
-                            <span class="text-danger">{{ $message }}</span>
-                        </div>
-                    @enderror
-                    <div class="col-12 mt-4">
-                        <button type="submit" class="btn btn-primary">Email Password Reset Link</button>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-    <script src="{{ asset('frontend/plugins/jquery/jquery.min.js') }}"></script>
-    <script src="{{ asset('frontend/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('frontend/dist/js/adminlte.min.js') }}"></script>
-</body>
-
-</html>
+@endsection
