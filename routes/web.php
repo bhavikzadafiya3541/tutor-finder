@@ -2,6 +2,7 @@
 
 
 use App\Http\Controllers\Frontend\FrontendController;
+use App\Http\Controllers\Frontend\SubjectController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,6 +18,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::name('frontend')->group(function() {
     Route::get('/', [FrontendController::class, 'index'])->name('.index');
+    Route::get('subjects', [SubjectController::class, 'subjects'])->name('.subjects');
+    Route::get('subject/tutor/{tutor}', [SubjectController::class, 'subjectTutor'])->name('.subject.tutor');
 
     Route::get('profile', [FrontendController::class, 'profile'])->middleware(['auth', 'verified'])->name('.profile');
 

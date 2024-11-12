@@ -17,8 +17,8 @@
                         <li class="{{ Request::routeIs('frontend.index') ? 'active' : '' }}">
                             <a href="{{ route('frontend.index') }}" class="nav-link">Home</a>
                         </li>
-                        <li>
-                            <a href="#" class="nav-link">Tech On {{ env('APP_NAME') }}</a>
+                        <li class="{{ Request::routeIs('frontend.subjects') ? 'active' : '' }}">
+                            <a href="{{ route('frontend.subjects') }}" class="nav-link">Subjects</a>
                         </li>
                         @auth
                             <li class="{{ Request::routeIs('frontend.profile') ? 'active' : '' }}">
