@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\CityController;
+use App\Http\Controllers\Admin\SubjectController as AdminSubjectController;
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\Frontend\SubjectController;
 use Illuminate\Support\Facades\Route;
@@ -23,7 +25,7 @@ Route::name('frontend')->group(function() {
 
     Route::get('profile', [FrontendController::class, 'profile'])->middleware(['auth', 'verified'])->name('.profile');
 
-    Route::middleware('auth')->group(function () {
+    Route::middleware('auth:web')->group(function () {
         Route::post('profile/update/{user}', [FrontendController::class, 'profileUpdate'])->name('.profile.update');
         Route::post('password/update/{user}', [FrontendController::class, 'updatePassword'])->name('.update.password');
     });
@@ -33,8 +35,11 @@ Route::get('admin', function() {
     return redirect()->route('admin.login');
 });
 
-Route::middleware('auth')->prefix('admin')->name('admin')->group(function() {
-    Route::get('dashboard', DashboardController::class)->name('.dashboard');
+Route::middleware('auth:admin')->prefix('admin')->group(function() {
+    Route::get('dashboard', DashboardController::class)->name('admin.dashboard');
+
+    Route::resource('cities', CityController::class)->names('admin.cities');
+    Route::resource('subjects', AdminSubjectController::class)->names('admin.subjects');
 });
 
 require __DIR__.'/auth.php';

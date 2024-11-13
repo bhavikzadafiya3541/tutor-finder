@@ -13,6 +13,18 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a href="{{ route('admin.cities.index') }}" class="nav-link {{ Request::routeIs('admin.cities.*') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-location"></i>
+                        <p>Cities</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.subjects.index') }}" class="nav-link {{ Request::routeIs('admin.subjects.*') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-book"></i>
+                        <p>Subjects</p>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <form method="POST" action="{{ route('admin.logout') }}">
                         @csrf
                         <a href="{{ route('admin.logout') }}" onclick="event.preventDefault(); this.closest('form').submit();" class="nav-link">
