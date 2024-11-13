@@ -15,25 +15,41 @@
                 <div class="col-lg-10">
                     <div class="main-subject-card card box mb-3">
                         <div class="d-flex">
-                            <div class="img">
-                                <img src="{{ asset('frontend/layouts/images/img_1.jpg') }}" class="img-fluid" alt="Image">
-                            </div>
                             <div class="description">
-                                <h3><a href="" class="font-size-24">Tutorial Name 1</a></h3>
+                                <h3>
+                                    <span class="font-size-24">Overview</span>
+                                </h3>
                                 <p class="mb-0 font-size-14">
-                                    Lorem Ipsum is simply dummy text of the printing and typesetting
-                                    industry. Lorem Ipsum has
-                                    been the industrys standard dummy text ever since the 1500s, when an unknown printer
-                                    took a
-                                    galley of type and scrambled it to make a type specimen book.
-                                    <span class="collapse" id="more">
-                                        1500s, when an unknown printer took a galley of type and scrambled it to make a type
-                                        specimen book. It has survived not only five centuries, but also the leap into
-                                        electronic typesetting, remaining essentially unchanged.
-                                    </span>
+                                    The Tutor Finder platform is an innovative online solution designed to connect students with qualified tutors. The primary purpose of the platform is to simplify the process of finding and hiring a tutor who matches a student's specific academic needs, learning style, and schedule.
                                 </p>
-                                <a href="#more" data-toggle="collapse" aria-expanded="false"
-                                    class="font-size-14 read-more"></a>
+                                <h3>
+                                    <span class="font-size-24">Key Features and Purpose:</span>
+                                </h3>
+                                <ul>
+                                    <li>
+                                        <span class="font-weight-bold">Personalized Matches: </span>
+                                        Students can search for tutors based on subjects, expertise level, availability, and location (for in-person sessions).
+                                    </li>
+                                    <li>
+                                        <span class="font-weight-bold">Comprehensive Tutor Profiles: </span>
+                                        Detailed profiles include qualifications, experience, reviews, and ratings to help students make informed decisions.
+                                    </li>
+                                    <li>
+                                        <span class="font-weight-bold">Flexible Learning Options: </span>
+                                        Supports both in-person and virtual tutoring sessions, catering to various learning preferences.
+                                    </li>
+                                    <li>
+                                        <span class="font-weight-bold">Secure Communication: </span>
+                                        Ensures safe and efficient communication between tutors and students via integrated chat and scheduling tools.
+                                    </li>
+                                    <li>
+                                        <span class="font-weight-bold">Streamlined Booking Process: </span>
+                                        Simplifies scheduling and payments through a user-friendly interface, enabling seamless transactions.
+                                    </li>
+                                </ul>
+                                <p class="mb-0 font-size-14">
+                                    The goal of the Tutor Finder platform is to empower learners to reach their educational goals by providing easy access to quality tutoring services, fostering a more personalized and effective learning experience.
+                                </p>
                             </div>
                         </div>
                     </div>

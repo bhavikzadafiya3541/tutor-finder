@@ -1832,10 +1832,12 @@ input[type="search"]::-webkit-search-cancel-button {
     display: none;
 }
 
+.subject-section .subject-list p,
 .subject-section .city-list p {
     column-gap: 10px;
 }
 
+.subject-section .subject-list .subjects,
 .subject-section .city-list .cities {
     min-width: 70px;
 }
