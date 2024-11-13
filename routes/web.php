@@ -1,6 +1,6 @@
 <?php
 
-
+use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\Frontend\SubjectController;
 use Illuminate\Support\Facades\Route;
@@ -27,6 +27,14 @@ Route::name('frontend')->group(function() {
         Route::post('profile/update/{user}', [FrontendController::class, 'profileUpdate'])->name('.profile.update');
         Route::post('password/update/{user}', [FrontendController::class, 'updatePassword'])->name('.update.password');
     });
+});
+
+Route::get('admin', function() {
+    return redirect()->route('admin.login');
+});
+
+Route::middleware('auth')->prefix('admin')->name('admin')->group(function() {
+    Route::get('dashboard', DashboardController::class)->name('.dashboard');
 });
 
 require __DIR__.'/auth.php';
