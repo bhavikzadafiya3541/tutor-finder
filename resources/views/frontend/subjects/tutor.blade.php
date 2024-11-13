@@ -8,86 +8,6 @@
     <h1>Subject Tutor</h1>
 @endsection
 
-@push('custom-styles')
-    <style>
-        img {
-            object-fit: cover;
-            object-position: top;
-        }
-
-        .card {
-            box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-            border: 1px solid #e9e8e8;
-            transition: .2s;
-            border-radius: 10px;
-        }
-
-        .card:hover {
-            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-            transition: .2s;
-        }
-
-
-        .subject-detail-section .profile-img {
-            width: 200px;
-            height: 200px;
-        }
-
-        .subject-detail-section .right-part p {
-            overflow: hidden;
-            display: -webkit-box;
-            -webkit-box-orient: vertical;
-            -webkit-line-clamp: 3;
-        }
-
-        .subject-detail-section .right-part {
-            max-height: 560px;
-            overflow-y: auto;
-        }
-
-        .subject-detail-section ::-webkit-scrollbar {
-            width: 0px;
-        }
-
-        .subject-detail-section .right-part:hover::-webkit-scrollbar {
-            width: 3px;
-        }
-
-        .subject-detail-section ::-webkit-scrollbar-thumb {
-            background: #cac9c9;
-            border-radius: 100px;
-        }
-
-        .subject-detail-section .back-btn {
-            margin-top: -70px;
-            position: relative;
-            z-index: 99;
-        }
-
-        .collapse.in {
-            display: inline !important;
-        }
-
-        p:has(.show) {
-            -webkit-line-clamp: inherit !important;
-        }
-
-        .subject-detail-section .description a::after {
-            position: absolute;
-            content: "Read More"
-        }
-
-        a[aria-expanded="true"]:before {
-            position: absolute;
-            content: "Read Less"
-        }
-
-        a[aria-expanded="true"]:after {
-            display: none;
-        }
-    </style>
-@endpush
-
 @section('content')
     <div class="subject-detail-section mt-5" id="subject-tutor-page">
         <div class="container">
@@ -116,7 +36,7 @@
                                         electronic typesetting, remaining essentially unchanged.
                                     </span>
                                 </p>
-                                <a href="#more" data-toggle="collapse" aria-expanded="false" class="font-size-14"></a>
+                                <a href="#more" data-toggle="collapse" aria-expanded="false" class="font-size-14 read-more"></a>
                             </div>
                         </div>
                         <hr />

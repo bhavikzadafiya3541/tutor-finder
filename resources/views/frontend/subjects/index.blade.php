@@ -8,63 +8,6 @@
     <h1>Subjects</h1>
 @endsection
 
-@push('custom-styles')
-    <style>
-        .subject-section .profile-img {
-            width: 120px;
-            height: 120px
-        }
-
-        img {
-            object-fit: cover;
-            object-position: top;
-        }
-
-        .subject-section .subject-card .row {
-            row-gap: 20px;
-        }
-
-        .subject-section .search-filter .search-icon {
-            top: 5px;
-            right: 10px;
-        }
-
-        .subject-section .search-filter .search-icon i {
-            color: #aaaaaa;
-        }
-        .subject-section .search-filter input {
-            width: 100%;
-        }
-        input[type="search"]::-webkit-search-cancel-button {
-            display: none;
-        }
-
-        .subject-section .city-list p {
-            column-gap: 10px;
-        }
-
-        .subject-section .city-list .cities {
-            min-width: 70px;
-        }
-
-        .card {
-            box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-            border: 1px solid #e9e8e8;
-            transition: .2s;
-            border-radius: 10px;
-        }
-
-        .card:hover {
-            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-            transition: .2s;
-        }
-
-        .page-link:focus {
-            box-shadow: none;
-        }
-    </style>
-@endpush
-
 @section('content')
     <div class="subject-section pt-5">
         <div class="container">
@@ -77,7 +20,7 @@
                 </div>
             </div>
             <div class="subject-card py-3">
-                <div class="row">
+                <div class="row tutor-card">
                     <div class="col-lg-4">
                         <div class="card px-3 py-4">
                             <div class="profile-img mx-auto mb-3">

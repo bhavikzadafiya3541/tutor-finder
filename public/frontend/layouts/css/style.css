@@ -1170,6 +1170,7 @@ select:-webkit-autofill:focus {
     -webkit-box-shadow: 0 0 0px 1000px #fff inset;
     transition: background-color 5000s ease-in-out 0s;
 }
+
 .select2-container {
     width: 100%;
 }
@@ -1798,3 +1799,154 @@ select:-webkit-autofill:focus {
     color: #fff;
     border-bottom: 1px solid rgba(255, 255, 255, 0.5);
 }
+
+/* subjects cards css start */
+.subject-section .profile-img {
+    width: 120px;
+    height: 120px
+}
+
+img {
+    object-fit: cover;
+    object-position: top;
+}
+
+.subject-section .subject-card .tutor-card {
+    row-gap: 20px;
+}
+
+.subject-section .search-filter .search-icon {
+    top: 5px;
+    right: 10px;
+}
+
+.subject-section .search-filter .search-icon i {
+    color: #aaaaaa;
+}
+
+.subject-section .search-filter input {
+    width: 100%;
+}
+
+input[type="search"]::-webkit-search-cancel-button {
+    display: none;
+}
+
+.subject-section .city-list p {
+    column-gap: 10px;
+}
+
+.subject-section .city-list .cities {
+    min-width: 70px;
+}
+
+.subject-section .card,
+.subject-detail-section .card,
+.site-section .card {
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    border: 1px solid #e9e8e8;
+    transition: .2s;
+    border-radius: 10px;
+}
+
+.subject-section .card:hover,
+.subject-detail-section .card:hover,
+.site-section .card:hover {
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    transition: .2s;
+}
+
+.subject-section .page-link:focus {
+    box-shadow: none;
+}
+/* subjects cards css start */
+
+/* subject detail css start */
+
+.subject-detail-section .profile-img {
+    width: 200px;
+    height: 200px;
+}
+
+.subject-detail-section .right-part p {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+}
+
+.subject-detail-section .right-part {
+    max-height: 560px;
+    overflow-y: auto;
+}
+
+.subject-detail-section ::-webkit-scrollbar {
+    width: 0px;
+}
+
+.subject-detail-section .right-part:hover::-webkit-scrollbar {
+    width: 3px;
+}
+
+.subject-detail-section ::-webkit-scrollbar-thumb {
+    background: #cac9c9;
+    border-radius: 100px;
+}
+
+.subject-detail-section .back-btn {
+    margin-top: -70px;
+    position: relative;
+    z-index: 99;
+}
+
+.subject-detail-section .collapse.in,
+.site-section .collapse.in {
+    display: inline !important;
+}
+
+.subject-detail-section p:has(.show),
+.site-section p:has(.show) {
+    -webkit-line-clamp: inherit !important;
+}
+
+.subject-detail-section .description .read-more::after,
+.site-section .description .read-more::after {
+    position: absolute;
+    content: "Read More"
+}
+
+.subject-detail-section .read-more[aria-expanded="true"]:before,
+.site-section .description .read-more[aria-expanded="true"]:before {
+    position: absolute;
+    content: "Read Less"
+}
+
+.subject-detail-section .read-more[aria-expanded="true"]:after,
+.site-section .description .read-more[aria-expanded="true"]:after {
+    display: none;
+}
+
+.subject-detail-section p,
+.site-section p {
+    font-size: 14px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+}
+
+/* subject detail css start */
+
+
+/* home page subject card css start */
+ul li {
+    list-style-type: none;
+}
+
+.site-section .main-subject-card .img {
+    flex: 0 0 200px;
+    margin-right: 20px;
+}
+
+
+/* home page subject card css end */
