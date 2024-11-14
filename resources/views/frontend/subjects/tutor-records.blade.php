@@ -14,7 +14,7 @@
                         <span class="cities">Cities : &nbsp;</span>
                         <p class="mb-0 d-flex flex-wrap font-size-14">
                             @foreach ($tutor->cities as $city)
-                                <span class="badge badge-primary">{{ $city->name }}</span>
+                                <span class="badge badge-primary mt-1">{{ $city->name }}</span>
                             @endforeach
                         </p>
                     </div>
@@ -22,7 +22,7 @@
                         <span class="subjects">Subject : &nbsp;</span>
                         <p class="mb-0 d-flex flex-wrap font-size-14">
                             @foreach ($tutor->subjects as $subject)
-                                <span class="badge badge-info">{{ $subject->name }}</span>
+                                <span class="badge badge-info mt-1">{{ $subject->name }}</span>
                             @endforeach
                         </p>
                     </div>
