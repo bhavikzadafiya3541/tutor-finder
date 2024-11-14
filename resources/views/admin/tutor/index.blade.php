@@ -1,11 +1,11 @@
 @extends('layouts.main')
 
 @section('page_title')
-    {{ __('Subjects') }}
+    {{ __('Tutors') }}
 @endsection
 
 @section('main-title')
-    {{ __('Subjects') }}
+    {{ __('Tutors') }}
 @endsection
 
 @section('bread-crumb')
@@ -14,7 +14,7 @@
             <a href="{{ route('admin.dashboard') }}">Dashboard</a>
         </li>
         <li class="breadcrumb-item">
-            Subjects
+            Tutors
         </li>
     </ol>
 @endsection
@@ -27,27 +27,29 @@
                     <div class="card">
                         <div class="card-header">
                             <div class="d-flex justify-content-between align-items-center">
-                                <h3 class="card-title">Subjects</h3>
-                                <a href="{{ route('admin.subjects.create') }}" class="btn btn-sm btn-primary mb-2">Create</a>
+                                <h3 class="card-title">Tutors</h3>
+                                <a href="{{ route('admin.tutors.create') }}" class="btn btn-sm btn-primary mb-2">Create</a>
                             </div>
                         </div>
                         <div class="card-body">
-                            <table id="subject-table" class="table table-bordered table-striped">
+                            <table id="tutor-table" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
                                         <th>Id</th>
                                         <th>Name</th>
+                                        <th>Email</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-									@foreach ($subjects as $subject)
+									@foreach ($tutors as $tutor)
                                         <tr>
-										    <td>{{ $subject->id }}</td>
-										    <td>{{ $subject->name }}</td>
+										    <td>{{ $tutor->id }}</td>
+										    <td>{{ $tutor->name }}</td>
+										    <td>{{ $tutor->email }}</td>
 										    <td>
-                                                <a href="{{ route('admin.subjects.edit', $subject) }}" class="btn btn-sm btn-info"><i class="fa-solid fa-pencil"></i></a>
-                                                <form action="{{ route('admin.subjects.destroy', $subject) }}" method="POST" style="display: inline;">
+                                                <a href="{{ route('admin.tutors.edit', $tutor) }}" class="btn btn-sm btn-info"><i class="fa-solid fa-pencil"></i></a>
+                                                <form action="{{ route('admin.tutors.destroy', $tutor) }}" method="POST" style="display: inline;">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-sm btn-danger mr-1">
@@ -70,7 +72,7 @@
 @push('custom-scripts')
     <script>
         $(document).ready(() => {
-            $('#subject-table').DataTable({
+            $('#tutor-table').DataTable({
                 "paging": true,
                 "lengthChange": true,
                 "searching": true,

@@ -64,7 +64,37 @@
     <script src="{{ asset('frontend/layouts/js/bootstrap-datepicker.min.js') }}"></script>
     <script src="{{ asset('frontend/layouts/js/aos.js') }}"></script>
     <script src="{{ asset('frontend/layouts/js/main.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            const addReadMore = () => {
+                const carLmt = 300;
+                const readMoreTxt = " ...Read more";
+                const readLessTxt = " Read less";
 
+                $(".add-read-more").each(function() {
+                    if ($(this).find(".first-section").length)
+                    return;
+
+                    const allstr = $(this).text();
+                    if (allstr.length > carLmt) {
+                        const firstSet = allstr.substring(0, carLmt);
+                        const secdHalf = allstr.substring(carLmt, allstr.length);
+                        const strtoadd = firstSet + "<span class='second-section'>" + secdHalf +
+                            "</span><span class='read-more' title='Click to Show More'>" + readMoreTxt +
+                            "</span><span class='read-less' title='Click to Show Less'>" + readLessTxt +
+                            "</span>";
+                        $(this).html(strtoadd);
+                    }
+                });
+
+                $(document).on("click", ".read-more, .read-less", function() {
+                    $(this).closest(".add-read-more").toggleClass("show-less-content show-more-content");
+                });
+            }
+
+            addReadMore();
+        });
+    </script>
     @stack('custom-scripts')
 </body>
 

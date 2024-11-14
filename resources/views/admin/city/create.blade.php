@@ -8,12 +8,24 @@
     {{ isset($city) && !empty($city) ? __('Edit City') : __('Create City') }}
 @endsection
 
+@section('bread-crumb')
+    <ol class="breadcrumb float-sm-right">
+        <li class="breadcrumb-item">
+            <a href="{{ route('admin.dashboard') }}">Dashboard</a>
+        </li>
+        <li class="breadcrumb-item">
+            <a href="{{ route('admin.cities.index') }}">Cities</a>
+        </li>
+        <li class="breadcrumb-item">{{ isset($city) && !empty($city) ? "Edit" : "Create" }}</li>
+    </ol>
+@endsection
+
 @section('content')
     <div class="card card-primary">
         <div class="card-header">
             <h3 class="card-title">{{ isset($city) && !empty($city) ? "Edit City" : "Create City" }}</h3>
         </div>
-        <form method="POST" action="{{ isset($city) && !empty($city) ? route('admin.cities.update', $city->id) : route('admin.cities.store') }}">
+        <form method="POST" action="{{ isset($city) && !empty($city) ? route('admin.cities.update', $city) : route('admin.cities.store') }}">
             @csrf
             @if (isset($city) && !empty($city))
                 @method('PUT')
@@ -28,7 +40,7 @@
                 </div>
             </div>
             <div class="card-footer">
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary">{{ isset($city) && !empty($city) ? "Edit" : "Create" }}</button>
                 <a href="{{ route('admin.cities.index') }}" class="btn btn-secondary">Cancel</a>
             </div>
         </form>

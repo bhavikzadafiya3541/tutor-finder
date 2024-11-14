@@ -8,6 +8,17 @@
     {{ __('Cities') }}
 @endsection
 
+@section('bread-crumb')
+    <ol class="breadcrumb float-sm-right">
+        <li class="breadcrumb-item">
+            <a href="{{ route('admin.dashboard') }}">Dashboard</a>
+        </li>
+        <li class="breadcrumb-item">
+            Cities
+        </li>
+    </ol>
+@endsection
+
 @section('content')
     <section class="content">
         <div class="container-fluid">

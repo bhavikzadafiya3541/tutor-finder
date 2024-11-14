@@ -19,7 +19,7 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-10">
-                    <form action="{{ route('frontend.profile.update', $tutor) }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('frontend.profile.update', $tutor->user) }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group row">
                             <div class="col-md-6">

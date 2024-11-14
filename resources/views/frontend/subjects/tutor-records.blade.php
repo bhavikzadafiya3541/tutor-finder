@@ -9,12 +9,12 @@
                             alt="Profile Picture {{ $key }}">
                     </div>
                     <h4 class="text-center">{{ $tutor->name }}</h4>
-                    <p class="font-size-14">{{ $tutor->intro }}</p>
+                    <p class="font-size-14 add-read-more show-less-content">{{ $tutor->intro }}</p>
                     <div class="city-list d-flex align-items-center pb-2">
                         <span class="cities">Cities : &nbsp;</span>
                         <p class="mb-0 d-flex flex-wrap font-size-14">
                             @foreach ($tutor->cities as $city)
-                                <span>{{ $city->name }}</span>
+                                <span class="badge badge-primary">{{ $city->name }}</span>
                             @endforeach
                         </p>
                     </div>
@@ -22,7 +22,7 @@
                         <span class="subjects">Subject : &nbsp;</span>
                         <p class="mb-0 d-flex flex-wrap font-size-14">
                             @foreach ($tutor->subjects as $subject)
-                                <span>{{ $subject->name }}</span>
+                                <span class="badge badge-info">{{ $subject->name }}</span>
                             @endforeach
                         </p>
                     </div>

@@ -1,6 +1,6 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
-    <a href="#" class="brand-link">
-        <span class="brand-text font-weight-light">{{ env('APP_NAME') }}</span>
+    <a href="#" class="brand-link d-flex justify-content-center">
+        <span class="brand-text font-weight-light text-center">{{ env('APP_NAME') }}</span>
     </a>
 
     <div class="sidebar">
@@ -10,6 +10,18 @@
                     <a href="{{ route('admin.dashboard') }}" class="nav-link {{ Request::routeIs('admin.dashboard') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>Dashboard</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.profile') }}" class="nav-link {{ Request::routeIs('admin.profile') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-user"></i>
+                        <p>Profile</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.tutors.index') }}" class="nav-link {{ Request::routeIs('admin.tutors.*') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-users"></i>
+                        <p>Tutors</p>
                     </a>
                 </li>
                 <li class="nav-item">

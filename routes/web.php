@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\CityController;
 use App\Http\Controllers\Admin\SubjectController as AdminSubjectController;
+use App\Http\Controllers\Admin\TutorController;
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\Frontend\SubjectController;
 use Illuminate\Support\Facades\Route;
@@ -36,10 +37,14 @@ Route::get('admin', function() {
 });
 
 Route::middleware('auth:admin')->prefix('admin')->group(function() {
-    Route::get('dashboard', DashboardController::class)->name('admin.dashboard');
+    Route::get('dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
 
     Route::resource('cities', CityController::class)->names('admin.cities');
     Route::resource('subjects', AdminSubjectController::class)->names('admin.subjects');
+    Route::resource('tutors', TutorController::class)->names('admin.tutors');
+
+    Route::get('profile', [DashboardController::class, 'profile'])->name('admin.profile');
+    Route::put('profile/{admin}', [DashboardController::class, 'profileUpdate'])->name('admin.profile.update');
 });
 
 require __DIR__.'/auth.php';
